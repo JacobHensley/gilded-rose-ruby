@@ -65,14 +65,12 @@ class Backstage
 end
 
 class GildedRose
-  attr_reader :item
-
-  def initialize(name, days_remaining, quality)
-    @item = klass_for(name).new(quality, days_remaining)
+  def self.new(name:, days_remaining:, quality:)
+    klass_for(name).new(quality, days_remaining)
   end
 
-  def klass_for(name)
-    case @name
+  def self.klass_for(name)
+    case name
       when 'Normal Item'
         return Normal
       when 'Aged Brie'
@@ -82,18 +80,6 @@ class GildedRose
       when 'Backstage passes to a TAFKAL80ETC concert'
         return Backstage
     end
-  end
-
-  def tick()
-    item.tick
-  end
-
-  def quality()
-    item.quality
-  end
-
-  def days_remaining()
-    item.days_remaining
   end
 
 end
